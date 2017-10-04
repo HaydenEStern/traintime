@@ -51,13 +51,13 @@
       var trainFrequency = childSnapshot.val().frequency;
       var trainStart = childSnapshot.val().start;
 
-      var trainStartConverted = moment(trainStart, "hh:mm").subtract(1, "years");
+      var trainStartConverted = moment(trainStart, "HH:mm").subtract(1, "years");
       console.log(trainStartConverted);
       // Current Time
       var currentTime = moment();
-      console.log("Current Time: " + moment(currentTime).format("hh:mm"));
+      console.log("Current Time: " + moment(currentTime).format("HH:mm"));
 
-      var timeDiff = moment().diff(trainStartConverted);
+      var timeDiff = moment().diff(moment(trainStartConverted), "minutes");
       console.log("Time Diff: " + timeDiff);
 
       var timeRemainder = timeDiff % trainFrequency;
@@ -67,14 +67,14 @@
 
       // Next Train
       var nextTrain = moment().add(minutesAway, "minutes");
-      console.log("arrival time: " + moment(nextTrain).format("hh:mm"));
+      console.log("arrival time: " + moment(nextTrain).format("HH:mm"));
 
-      var arrivalTime = moment(nextTrain).format("hh:mm");
+      var arrivalTime = moment(nextTrain).format("HH:mm");
       // add each part to table
 
       $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" +
           trainDestination + "</td><td>" + trainFrequency + "</td><td>" + arrivalTime +
-          "</td><td>" + minutesAway + "</td></tr>");
+          "</td><td>" + moment(minutesAway) + "</td></tr>");
 
   });
 
