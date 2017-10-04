@@ -8,34 +8,6 @@
   };
   firebase.initializeApp(config);
   database = firebase.database();
-  $(document).ready(function() {
-
-  	gradient();
-
-  	function gradient() {
-  	d3.select('body')
-  	.transition()
-  	.style("background-color", 'purple')
-  	.duration(10000)
-  	.each("end", function(){
-  		d3.select(this)
-  		.transition()
-  		.style("background-color", 'orange')
-  		.duration(10000)
-  		.each("end", function(){
-  		d3.select(this)
-  		.transition()
-  		.style("background-color", 'pink')
-  		.duration(10000)
-  		.each("end", function(){
-  		gradient();
-  		
-  	});
-  		
-  	});
-
-  	});
-  }
 
 
   // button for adding train
@@ -106,4 +78,33 @@
 
   });
 
-  	   });
+d3.select('body').on("mouseover", function() {
+
+  	gradient();
+
+  	function gradient() {
+  	d3.select('body')
+  	.transition()
+  	.style("background-color", 'purple')
+  	.duration(10000)
+  	.on("end", function(){
+  		d3.select('body')
+  		.transition()
+  		.style("background-color", 'orange')
+  		.duration(10000)
+  		.on("end", function(){
+  		d3.select('body')
+  		.transition()
+  		.style("background-color", 'pink')
+  		.duration(10000)
+  		.on("end", function(){
+  		gradient();
+  		
+  	});
+  		
+  	});
+
+  	});
+  }
+
+});
